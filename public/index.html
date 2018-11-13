@@ -11,8 +11,28 @@
 <body>
     <div class="jumbotron">Ylist</div>
     <div class="container">
-       
+       <div class="form row">
+                <div class="col">
+                    <label for="name">Name: </label><input class="form-control" type="text" id="name" placeholder="Name"><br>
+                </div>
+                <div class="col">
+                    <label for="item">Item for sale: </label><input class="form-control" type="text" id="item" placeholder="item"><br>
+                </div>
+                <div class="col">
+                    <label for="image">Image URL: </label><input class="form-control" type="text" id="image" ><br>
+                </div>
+                <div class="col">
+                    <label for="location">Item for sale: </label><input class="form-control" type="text" id="location" placeholder="enter a city name"><br>
+                </div>
+                <div class="col">
+                    <label for="price">Price: </label><input class="form-control" type="text" id="price" placeholder="price"><br>
+                </div>
+            </div>
+            
+            <button id="postItem" class="btn btn-primary mb-2">Post Listing</button>
     </div>
+    
+    <div class="items"></div>
 
 
 </body>

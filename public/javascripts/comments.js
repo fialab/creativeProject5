@@ -1,11 +1,17 @@
 $(document).ready(function(){
-  $("#postComment").click(function(e){
+  $("#postItem").click(function(e){
       e.preventDefault();
-      var myobj = {Name:$("#name").val(),Comment:$("#comment").val()};
+      var myobj = {
+        sellerName: $("#name").val(),
+        item: $("#item").val(),
+        imageURL: $("#image").val(),
+        location: $("#location").val(),
+        price: $("#price").val(),
+      };
       jobj = JSON.stringify(myobj);
       $("#json").text(jobj);
       
-      var url = "comment";
+      var url = "item";
       $.ajax({
       url:url,
       type: "POST",
@@ -17,18 +23,18 @@ $(document).ready(function(){
     })
   });
   
-  $("#getComments").click(function() {
-    var URL = "comment?q=" + $("#usercomments").val();
+  $("#getItems").click(function() {
+    var URL = "item?q=" + $("#usercomments").val();
     console.log(URL);
     $.getJSON(URL, function(data) {
       console.log(data);
       var everything = "<ul class='list-group'>";
       for(var comment in data) {
         com = data[comment];
-        everything += "<li class='list-group-item'> <strong>" + com.Name + "</strong><br>" + com.Comment + "</li>";
+        everything += "<li class='list-group-item'> <strong>" + com.Name + "</strong><br>" + com.Price + "</li>";
       }
       everything += "</ul>";
-      $("#comments").html(everything);
+      $("#items").html(everything);
     })
   });
   

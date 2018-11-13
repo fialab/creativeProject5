@@ -3,14 +3,18 @@ var router = express.Router();
 
 var mongoose = require('mongoose'); //Adds mongoose as a usable dependency
 
-mongoose.connect('mongodb://localhost/commentDB',{ useNewUrlParser: true }); //Connects to a mongo database called "commentDB"
+mongoose.connect('mongodb://localhost/itemDB',{ useNewUrlParser: true }); //Connects to a mongo database called "itemDB"
 
-var commentSchema = mongoose.Schema({ //Defines the Schema for this database
-    Name: String,
-    Comment: String
+var itemSchema = mongoose.Schema({ //Defines the Schema for this database
+    sellerName: String,
+    item: String,
+    imageURL: String,
+    location: String,
+    price: Number,
+    
 });
 
-var Comment = mongoose.model('Comment', commentSchema); //Makes an object from that schema as a model
+var listing = mongoose.model('item', itemSchema); //Makes an object from that schema as a model
 
 var db = mongoose.connection; //Saves the connection as a variable to use
 db.on('error', console.error.bind(console, 'connection error:')); //Checks for connection errors
@@ -19,11 +23,11 @@ db.once('open', function() { //Lets us know when we're connected
 });
 
 /* GET home page. */
-router.post('/comment', function(req, res, next) {
+router.post('/item', function(req, res, next) {
 console.log("POST comment route"); 
 console.log(req.body);
-var newcomment = new Comment(req.body);
-newcomment.save(function(err, result){
+var newListing = new listing(req.body);
+newListing.save(function(err, result){
     if(err){console.log(err)}
     else{
         res.sendStatus(200);
@@ -42,7 +46,7 @@ newcomment.save(function(err, result){
         
 //     })
 // })
-router.get('/comment', function(req, res, next){
+router.get('/item', function(req, res, next){
     console.log("in search request")
     console.log(req.query);
     var requestname = req.query["q"];
@@ -51,7 +55,7 @@ router.get('/comment', function(req, res, next){
     if(requestname){
         obj = {Name: requestname};
     }
-    Comment.find(obj, function(err, list){
+    listing.find(obj, function(err, list){
          if(err){console.log(err)}
         else{
             res.json(list);
