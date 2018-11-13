@@ -1,16 +1,19 @@
 $(document).ready(function(){
   
-    $.getJSON("item", function(data) {
-      console.log(data);
-      var everything = "<ul class='list-group'>";
-      for(var things in data) {
-        com = data[things];
-        everything += "<li class='list-group-item'> <strong>" + com.sellerName + "</strong><br>" + com.price + "</li>";
-      }
-      everything += "</ul>";
-      console.log(everything);
-      $("#items").html(everything);
-    });
+    function getListings(){
+        $.getJSON("item", function(data) {
+        console.log(data);
+        var everything = "<ul class='list-group'>";
+        for(var things in data) {
+          com = data[things];
+          everything += "<li class='list-group-item'> <strong>" + com.sellerName + "</strong><br>" + com.price + "</li>";
+        }
+        everything += "</ul>";
+        console.log(everything);
+        $("#items").html(everything);
+        });
+    }
+    getListings();
   
   $("#postItem").click(function(e){
       e.preventDefault();
@@ -32,7 +35,9 @@ $(document).ready(function(){
       contentType: "application/json; charset=utf-8",
       success: function(data,textStatus) {
           $("#done").html(textStatus);
-      }
+      },
+      complete:getListings()
+      
     })
   });
   
