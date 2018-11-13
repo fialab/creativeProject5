@@ -1,4 +1,17 @@
 $(document).ready(function(){
+  
+    $.getJSON("item", function(data) {
+      console.log(data);
+      var everything = "<ul class='list-group'>";
+      for(var things in data) {
+        com = data[things];
+        everything += "<li class='list-group-item'> <strong>" + com.sellerName + "</strong><br>" + com.price + "</li>";
+      }
+      everything += "</ul>";
+      console.log(everything);
+      $("#items").html(everything);
+    });
+  
   $("#postItem").click(function(e){
       e.preventDefault();
       var myobj = {
@@ -23,20 +36,20 @@ $(document).ready(function(){
     })
   });
   
-  $("#getItems").click(function() {
-    var URL = "item?q=" + $("#usercomments").val();
-    console.log(URL);
-    $.getJSON(URL, function(data) {
-      console.log(data);
-      var everything = "<ul class='list-group'>";
-      for(var comment in data) {
-        com = data[comment];
-        everything += "<li class='list-group-item'> <strong>" + com.Name + "</strong><br>" + com.Price + "</li>";
-      }
-      everything += "</ul>";
-      $("#items").html(everything);
-    })
-  });
+  // $("#getItems").click(function() {
+  //   var URL = "item?q=" + $("#usercomments").val();
+  //   console.log(URL);
+  //   $.getJSON(URL, function(data) {
+  //     console.log(data);
+  //     var everything = "<ul class='list-group'>";
+  //     for(var comment in data) {
+  //       com = data[comment];
+  //       everything += "<li class='list-group-item'> <strong>" + com.Name + "</strong><br>" + com.Price + "</li>";
+  //     }
+  //     everything += "</ul>";
+  //     $("#items").html(everything);
+  //   })
+  // });
   
   $("#deleteComments").click(function(){
   console.log("delete comment attempt");
