@@ -1,32 +1,4 @@
- function deleteComment(id) {
-      var myobj = {
-        sellerName: $("#name").val(),
-        item: $("#item").val(),
-        imageURL: $("#image").val(),
-        location: $("#location").val(),
-        price: $("#price").val(),
-      };
-      jobj = JSON.stringify(myobj);
-      $("#json").text(jobj);
-      
-      var url = "item/" + id;
-      $.ajax({
-      url:url,
-      type: "DELETE",
-      data: jobj,
-      contentType: "application/json; charset=utf-8",
-      success: function(data,textStatus) {
-          $("#done").html(textStatus);
-      }
-      
-    })
-  }
-
-$(document).ready(function(){
-  
- 
-  
-   function getListings(){
+function getListings(){
         $.getJSON("item", function(data) {
         console.log(data);
         var everything = "<ul class='list-group'>";
@@ -78,6 +50,37 @@ $(document).ready(function(){
         $("#items").html(everything);
         });
     }
+    
+ function deleteComment(id) {
+      var myobj = {
+        sellerName: $("#name").val(),
+        item: $("#item").val(),
+        imageURL: $("#image").val(),
+        location: $("#location").val(),
+        price: $("#price").val(),
+      };
+      jobj = JSON.stringify(myobj);
+      $("#json").text(jobj);
+      
+      var url = "item/" + id;
+      $.ajax({
+      url:url,
+      type: "DELETE",
+      data: jobj,
+      contentType: "application/json; charset=utf-8",
+      success: function(data,textStatus) {
+          $("#done").html(textStatus);
+      },
+      complete:getListings()
+      
+    })
+  }
+
+$(document).ready(function(){
+  
+ 
+  
+   
    
     getListings();
   
