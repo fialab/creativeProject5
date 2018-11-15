@@ -63,9 +63,11 @@ router.get('/item', function(req, res, next){
         
     })
 })
-router.delete('/delete', function(req, res, next){
+router.delete('/item/:id', function(req, res, next){
+    var id = req.params.id;
     console.log("delete route");
-    Comment.find().remove(function(){});
+    console.log(id)
+    Comment.find({_id: id}).remove(function(){});
 })
 
 module.exports = router;

@@ -1,4 +1,6 @@
 node_modules/*
+outt
+npm-*
 .idea/
 .idea/*
 

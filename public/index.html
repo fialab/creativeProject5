@@ -5,24 +5,27 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="javascripts/comments.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
 
 </head>
 
 <body>
     <div class="jumbotron">Ylist</div>
     <div class="container">
+        <div style="width: 80vw; max-width: 700px; margin: auto;">
        <div class="form row">
                 <div class="col">
-                    <label for="name">Name: </label><input class="form-control" type="text" id="name" placeholder="Name"><br>
+                    <label for="name">Name: </label><input class="form-control" type="text" id="name" placeholder="seller"><br>
                 </div>
                 <div class="col">
-                    <label for="item">Item for sale: </label><input class="form-control" type="text" id="item" placeholder="item"><br>
+                    <label for="item">Item for sale: </label><input class="form-control" type="text" id="item" placeholder="item name"><br>
                 </div>
                 <div class="col">
-                    <label for="image">Image URL: </label><input class="form-control" type="text" id="image" ><br>
+                    <label for="image">Image URL: </label><input class="form-control" type="text" id="image" placeholder="image url"><br>
                 </div>
                 <div class="col">
-                    <label for="location">Item for sale: </label><input class="form-control" type="text" id="location" placeholder="enter a city name"><br>
+                    <label for="location">Location: </label><input class="form-control" type="text" id="location" placeholder="location"><br>
                 </div>
                 <div class="col">
                     <label for="price">Price: </label><input class="form-control" type="text" id="price" placeholder="price"><br>
@@ -30,9 +33,15 @@
             </div>
             
             <button id="postItem" class="btn btn-primary mb-2">Post Listing</button>
+            </div>
     </div>
     
-    <div id="items"></div>
+        
+        
+    <div style="width: 80vw; max-width: 700px; margin: auto; margin-top: 30px;" id="items">
+       
+    </div>
+    
 
 
 </body>
