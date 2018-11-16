@@ -1,56 +1,4 @@
-function getListings(){
-        $.getJSON("item", function(data) {
-        console.log(data);
-        var everything = "<ul class='list-group'>";
-        for(var things in data) {
-          com = data[things];
-          everything += 
-          ` <li style="
-            width: 100%;
-            height: 130px;
-            list-style-type: none;
-            padding: 16px;
-            border-radius: 4px;
-            box-shadow: 1px 1px 4px #bbb;
-            margin-bottom: 20px;
-        "> 
-            <div style="
-                width: 100%; 
-                display:flex; 
-                flex-direction: row; 
-                justify-content: 
-                space-between;
-                font-size: 1rem"
-                >
-                <div>
-                  <div style="font-size: 1.3rem;"><strong>${com.item}</strong></div>
-                  Seller: ${com.sellerName}
-                </div>
-                <div style="
-                  display: flex;
-                  flex-direction: row;
-                  align-items: flex-start;
-                ">
-                  Price: $${com.price}
-                  <div style="margin-left: 10px;margin-top: -3px;" onclick="deleteComment('${com._id}')">
-                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                        <path fill="#aaa" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
-                    </svg>
-                  </div>
-                </div>
-            </div>
-            
-                  <div style="margin-top: auto; font-style: italic; font-size: .8rem; color: grey;">
-                    ${com.location}
-                  </div>
-        </li>`;
-        }
-        everything += "</ul>";
-        console.log(everything);
-        $("#items").html(everything);
-        });
-    }
-    
+
  function deleteComment(id) {
       var myobj = {
         sellerName: $("#name").val(),
@@ -76,9 +24,74 @@ function getListings(){
     })
   }
 
-$(document).ready(function(){
+function getListings(){
+        $.getJSON("item", function(data) {
+        console.log(data);
+        var everything = "<ul class='list-group'>";
+        for(var things in data) {
+          com = data[things];
+          everything += 
+          ` <li style="
+            width: 100%;
+            height: 200px;
+            list-style-type: none;
+            padding: 16px;
+            border-radius: 4px;
+            box-shadow: 1px 1px 4px #bbb;
+            margin-bottom: 20px;
+        "> 
+            <div style="
+                width: 100%; 
+                display:flex; 
+                flex-direction: row; 
+                justify-content: 
+                space-between;
+                font-size: 1rem"
+                >
+                <div>
+                  <div style="font-size: 1.3rem;"><strong>${com.item}</strong></div>
+                  Seller: ${com.sellerName}
+                  <div style="margin-top: auto; font-style: italic; font-size: .8rem; color: grey;">
+                    ${com.location}
+                  </div>
+                </div>
+		<div style="
+			width: 250px;
+			height: 170px;
+			background-image: url('${com.imageURL}');
+			background-repeat: no-repeat;
+			background-position: center;
+			background-sizle: cover;
+		">
+
+		</div>
+                <div style="
+                  display: flex;
+                  flex-direction: row;
+                  align-items: flex-start;
+                ">
+                  Price: $${com.price}
+                  <div style="margin-left: 10px;margin-top: -3px;" onclick="deleteComment('${com._id}')">
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="#aaa" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
+                    </svg>
+                  </div>
+                </div>
+            </div>
+            
+        </li>`;
+        }
+        everything += "</ul>";
+        console.log(everything);
+        $("#items").html(everything);
+        });
+    }
+    
   
  
+
+
+$(document).ready(function(){
   
    
    
@@ -136,7 +149,8 @@ $(document).ready(function(){
       contentType: "application/json; charset=utf-8",
       success: function(data,textStatus) {
           $("#done").html(textStatus);
-      }
+      },
+complete:getListings()
     })
   
   });
